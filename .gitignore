@@ -1,2 +1,58 @@
+# Ambientes virtuais
+venv/
 .env
-.env.production
+.env.*
+
+# Bytecode Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# SQLite (caso usado localmente)
+*.sqlite3
+*.db
+
+# Arquivos temporários
+*.log
+*.pot
+*.pyc
+*.pyo
+*.swp
+*.bak
+*.tmp
+*.DS_Store
+.idea/
+.vscode/
+*.orig
+
+# Pipenv/PDM poetry lockfiles (se não usar)
+Pipfile
+Pipfile.lock
+poetry.lock
+
+# Cache e compilados
+.cache/
+.mypy_cache/
+.pytest_cache/
+dist/
+build/
+*.egg-info/
+
+# Alembic versions (opcional)
+migrations/versions/
+
+# Testes locais
+.coverage
+htmlcov/
+*.prof
+
+# Arquivos de sistema
+Thumbs.db
+.DS_Store
+
+# Opencredz específico
+*.sqlite
+*.pdf
+*.out
+*.secret
+token.json
