@@ -236,7 +236,7 @@ Crie um arquivo chamado `.env` na raiz do projeto com o seguinte conteúdo:
 
 ```dotenv
 ENV=development
-DATABASE_URL=postgresql://viniciusweber:q1w2e3@localhost/opencredz
+DATABASE_URL=postgresql://YOUR_USER:PASSWORD@DATABASE
 SECRET_KEY=local-AYIHJKG!@F
 ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=300
