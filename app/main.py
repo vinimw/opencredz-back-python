@@ -1,16 +1,33 @@
 from fastapi import FastAPI, Request
-from .db.models import Base
-from .db.database import engine
-from .api.v1 import routes_user, routes_contact, routes_health_plan, routes_financing_request, routes_loan_application, routes_loan_application_pj
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
-from app.schemas.common import ErrorResponse, FieldError
 from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(title="Opencredz API")
+from app.db.models import Base
+from app.db.database import engine
+from app.core.config import settings
+from app.schemas.common import ErrorResponse, FieldError
 
-# Adicione isso antes dos `include_router`
+from app.api.v1 import (
+    routes_user,
+    routes_contact,
+    routes_health_plan,
+    routes_financing_request,
+    routes_loan_application,
+    routes_loan_application_pj
+)
+
+docs_enabled = settings.ENV == "development"
+
+app = FastAPI(
+    title="Opencredz API",
+    docs_url="/docs" if docs_enabled else None,
+    redoc_url=None,
+    openapi_url="/openapi.json" if docs_enabled else None,
+)
+
+# CORS (ajuste origem se necessário)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:8000"],
@@ -19,6 +36,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Custom error response
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
     errors = []
@@ -33,8 +51,10 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
         ))
     )
 
+# Criação das tabelas (ideal separar no futuro)
 Base.metadata.create_all(bind=engine)
 
+# Rotas
 app.include_router(routes_user.router, prefix="/api/v1", tags=["Auth"])
 app.include_router(routes_contact.router, prefix="/api/v1", tags=["Contact"])
 app.include_router(routes_health_plan.router, prefix="/api/v1", tags=["Health Plan"])
