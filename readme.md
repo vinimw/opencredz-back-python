@@ -7,17 +7,17 @@ Este repositório contém o backend da aplicação OpenCredz, desenvolvido em Py
 1.  [Visão Geral do Projeto](#visão-geral-do-projeto)
 2.  [Pré-requisitos](#pré-requisitos)
 3.  [Configuração do Ambiente de Desenvolvimento](#configuração-do-ambiente-de-desenvolvimento)
-    *   [Instalação do Python](#instalação-do-python)
-        *   [Windows](#windows)
-        *   [macOS](#macos)
-    *   [Instalação do PostgreSQL](#instalação-do-postgresql)
-        *   [Windows](#windows-1)
-        *   [macOS](#macos-1)
+    - [Instalação do Python](#instalação-do-python)
+      - [Windows](#windows)
+      - [macOS](#macos)
+    - [Instalação do PostgreSQL](#instalação-do-postgresql)
+      - [Windows](#windows-1)
+      - [macOS](#macos-1)
 4.  [Configuração do Projeto](#configuração-do-projeto)
-    *   [Clonando o Repositório](#clonando-o-repositório)
-    *   [Configurando o Ambiente Virtual](#configurando-o-ambiente-virtual)
-    *   [Variáveis de Ambiente](#variáveis-de-ambiente)
-    *   [Executando as Migrações do Banco de Dados](#executando-as-migrações-do-banco-de-dados)
+    - [Clonando o Repositório](#clonando-o-repositório)
+    - [Configurando o Ambiente Virtual](#configurando-o-ambiente-virtual)
+    - [Variáveis de Ambiente](#variáveis-de-ambiente)
+    - [Executando as Migrações do Banco de Dados](#executando-as-migrações-do-banco-de-dados)
 5.  [Executando a Aplicação](#executando-a-aplicação)
 6.  [Testes](#testes)
 7.  [Estrutura do Projeto](#estrutura-do-projeto)
@@ -32,13 +32,11 @@ O `opencredz-back-python` é o serviço de backend que sustenta a plataforma Ope
 
 Antes de iniciar, certifique-se de ter os seguintes softwares instalados em sua máquina:
 
-*   **Python 3.x**: Versão 3.8 ou superior é recomendada.
-*   **PostgreSQL**: Um sistema de gerenciamento de banco de dados relacional.
-*   **Git**: Para clonar o repositório.
+- **Python 3.x**: Versão 3.8 ou superior é recomendada.
+- **PostgreSQL**: Um sistema de gerenciamento de banco de dados relacional.
+- **Git**: Para clonar o repositório.
 
 As seções a seguir detalham a instalação do Python e do PostgreSQL para sistemas operacionais Windows e macOS.
-
-
 
 ### Instalação do Python
 
@@ -71,6 +69,7 @@ O macOS geralmente vem com uma versão pré-instalada do Python, mas é recomend
     ```
 
     Siga as instruções na tela para concluir a instalação do Homebrew.
+
 2.  **Instalar Python**: Com o Homebrew instalado, você pode instalar a versão mais recente do Python com:
 
     ```bash
@@ -94,8 +93,6 @@ O macOS geralmente vem com uma versão pré-instalada do Python, mas é recomend
 
 É crucial que a versão do Python utilizada seja consistente em todo o ambiente de desenvolvimento. Recomenda-se o uso de ambientes virtuais para isolar as dependências do projeto.
 
-
-
 ### Instalação do PostgreSQL
 
 #### Windows
@@ -105,9 +102,9 @@ Para instalar o PostgreSQL no Windows, o método mais comum é usar o instalador
 1.  **Baixe o Instalador**: Acesse a página de downloads do PostgreSQL da EnterpriseDB em [PostgreSQL Downloads](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads) e selecione a versão mais recente para Windows.
 2.  **Execute o Instalador**: Execute o arquivo `.exe` baixado. O assistente de instalação o guiará através do processo.
 3.  **Selecione Componentes**: Durante a instalação, você pode escolher quais componentes instalar. Certifique-se de incluir:
-    *   **PostgreSQL Server**: O servidor de banco de dados principal.
-    *   **pgAdmin 4**: Uma ferramenta gráfica para gerenciar seus bancos de dados PostgreSQL.
-    *   **Stack Builder**: Uma ferramenta para baixar e instalar ferramentas e drivers adicionais (opcional, mas útil).
+    - **PostgreSQL Server**: O servidor de banco de dados principal.
+    - **pgAdmin 4**: Uma ferramenta gráfica para gerenciar seus bancos de dados PostgreSQL.
+    - **Stack Builder**: Uma ferramenta para baixar e instalar ferramentas e drivers adicionais (opcional, mas útil).
 4.  **Defina a Senha do Superusuário**: Você será solicitado a definir uma senha para o usuário `postgres` (o superusuário do banco de dados). **Anote esta senha**, pois ela será necessária para acessar o banco de dados.
 5.  **Defina a Porta**: A porta padrão para o PostgreSQL é `5432`. Você pode alterá-la se houver conflitos, mas é recomendado manter a padrão.
 6.  **Local de Dados**: Escolha um diretório para armazenar os dados do banco de dados.
@@ -169,8 +166,6 @@ O [Postgres.app](https://postgresapp.com/) é uma maneira fácil de instalar e e
 
 Com o PostgreSQL instalado, você estará pronto para configurar o banco de dados para o projeto OpenCredz.
 
-
-
 ## 4. Configuração do Projeto
 
 ### Clonando o Repositório
@@ -196,17 +191,17 @@ cd opencredz-back-python
 
 2.  **Ative o Ambiente Virtual**:
 
-    *   **Windows (Prompt de Comando/PowerShell)**:
+    - **Windows (Prompt de Comando/PowerShell)**:
 
-        ```bash
-        .\venv\Scripts\activate
-        ```
+      ```bash
+      .\venv\Scripts\activate
+      ```
 
-    *   **macOS/Linux (Bash/Zsh)**:
+    - **macOS/Linux (Bash/Zsh)**:
 
-        ```bash
-        source venv/bin/activate
-        ```
+      ```bash
+      source venv/bin/activate
+      ```
 
     Você saberá que o ambiente virtual está ativo quando `(venv)` aparecer no início da linha de comando.
 
@@ -218,15 +213,15 @@ cd opencredz-back-python
 
     As dependências são:
 
-    *   `fastapi`: O framework web para construção da API.
-    *   `uvicorn`: Um servidor ASGI para rodar a aplicação FastAPI.
-    *   `psycopg2-binary`: Adaptador PostgreSQL para Python.
-    *   `python-multipart`: Necessário para lidar com formulários (e.g., upload de arquivos).
-    *   `pydantic[email]`: Para validação de dados, incluindo validação de e-mail.
-    *   `sqlalchemy`: ORM (Object Relational Mapper) para interagir com o banco de dados.
-    *   `python-jose[cryptography]`: Para manipulação de JWT (JSON Web Tokens).
-    *   `passlib[bcrypt]`: Para hashing de senhas.
-    *   `pydantic-settings`: Para gerenciar configurações e variáveis de ambiente.
+    - `fastapi`: O framework web para construção da API.
+    - `uvicorn`: Um servidor ASGI para rodar a aplicação FastAPI.
+    - `psycopg2-binary`: Adaptador PostgreSQL para Python.
+    - `python-multipart`: Necessário para lidar com formulários (e.g., upload de arquivos).
+    - `pydantic[email]`: Para validação de dados, incluindo validação de e-mail.
+    - `sqlalchemy`: ORM (Object Relational Mapper) para interagir com o banco de dados.
+    - `python-jose[cryptography]`: Para manipulação de JWT (JSON Web Tokens).
+    - `passlib[bcrypt]`: Para hashing de senhas.
+    - `pydantic-settings`: Para gerenciar configurações e variáveis de ambiente.
 
 ### Variáveis de Ambiente
 
@@ -244,11 +239,11 @@ ACCESS_TOKEN_EXPIRE_MINUTES=300
 
 **Explicação das Variáveis:**
 
-*   `ENV`: Define o ambiente da aplicação (e.g., `development`, `production`).
-*   `DATABASE_URL`: A URL de conexão com o banco de dados PostgreSQL. Certifique-se de substituir `viniciusweber:q1w2e3` pelo seu usuário e senha do PostgreSQL, e `opencredz` pelo nome do banco de dados que você criou ou deseja usar.
-*   `SECRET_KEY`: Uma chave secreta forte usada para assinar tokens JWT. **Em produção, esta chave deve ser gerada de forma segura e mantida em segredo.**
-*   `ALGORITHM`: O algoritmo de criptografia usado para os tokens JWT (e.g., `HS256`).
-*   `ACCESS_TOKEN_EXPIRE_MINUTES`: Tempo de expiração dos tokens de acesso em minutos.
+- `ENV`: Define o ambiente da aplicação (e.g., `development`, `production`).
+- `DATABASE_URL`: A URL de conexão com o banco de dados PostgreSQL. Certifique-se de substituir `viniciusweber:q1w2e3` pelo seu usuário e senha do PostgreSQL, e `opencredz` pelo nome do banco de dados que você criou ou deseja usar.
+- `SECRET_KEY`: Uma chave secreta forte usada para assinar tokens JWT. **Em produção, esta chave deve ser gerada de forma segura e mantida em segredo.**
+- `ALGORITHM`: O algoritmo de criptografia usado para os tokens JWT (e.g., `HS256`).
+- `ACCESS_TOKEN_EXPIRE_MINUTES`: Tempo de expiração dos tokens de acesso em minutos.
 
 ### Executando as Migrações do Banco de Dados
 
@@ -267,8 +262,6 @@ Após configurar o banco de dados PostgreSQL e as variáveis de ambiente, você 
 
 **Nota**: O comando exato para executar as migrações pode variar. Consulte a documentação específica do projeto (se houver) ou o código-fonte para identificar o script ou comando correto. Geralmente, frameworks como FastAPI com SQLAlchemy usam Alembic para gerenciar migrações de banco de dados.
 
-
-
 ## 5. Executando a Aplicação
 
 Com todas as dependências instaladas e o banco de dados configurado, você pode iniciar a aplicação FastAPI. Certifique-se de que seu ambiente virtual esteja ativo.
@@ -279,15 +272,13 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
 **Explicação do Comando:**
 
-*   `uvicorn`: O servidor ASGI que executa a aplicação.
-*   `app.main:app`: Indica que a aplicação FastAPI (`app`) está localizada no módulo `main.py` dentro do pacote `app`.
-*   `--reload`: Habilita o recarregamento automático do servidor quando há alterações no código-fonte (ótimo para desenvolvimento).
-*   `--host 0.0.0.0`: Faz com que o servidor escute em todas as interfaces de rede disponíveis, tornando-o acessível de outras máquinas na mesma rede (se o firewall permitir). Para acesso apenas local, você pode usar `--host 127.0.0.1` ou `--host localhost`.
-*   `--port 8000`: Define a porta na qual a aplicação será executada. Você pode acessar a API em `http://localhost:8000`.
+- `uvicorn`: O servidor ASGI que executa a aplicação.
+- `app.main:app`: Indica que a aplicação FastAPI (`app`) está localizada no módulo `main.py` dentro do pacote `app`.
+- `--reload`: Habilita o recarregamento automático do servidor quando há alterações no código-fonte (ótimo para desenvolvimento).
+- `--host 0.0.0.0`: Faz com que o servidor escute em todas as interfaces de rede disponíveis, tornando-o acessível de outras máquinas na mesma rede (se o firewall permitir). Para acesso apenas local, você pode usar `--host 127.0.0.1` ou `--host localhost`.
+- `--port 8000`: Define a porta na qual a aplicação será executada. Você pode acessar a API em `http://localhost:8000`.
 
 Após iniciar o servidor, você pode acessar a documentação interativa da API (Swagger UI) em `http://localhost:8000/docs` e a documentação alternativa (ReDoc) em `http://localhost:8000/redoc`.
-
-
 
 ## 6. Testes
 
@@ -347,12 +338,3 @@ Contribuições são bem-vindas! Se você deseja contribuir para o projeto, por 
 5.  Faça commit de suas alterações (`git commit -m 'feat: Adiciona nova feature'`).
 6.  Envie para a branch original (`git push origin feature/sua-feature`).
 7.  Abra um Pull Request descrevendo suas alterações.
-
-## 9. Licença
-
-Este projeto está licenciado sob a Licença MIT. Consulte o arquivo `LICENSE` na raiz do repositório para mais detalhes.
-
----
-
-**Desenvolvido por Manus AI**
-
