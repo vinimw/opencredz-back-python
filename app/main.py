@@ -30,7 +30,7 @@ app = FastAPI(
 # CORS (ajuste origem se necessário)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8000"],
+    allow_origins=["http://opencredz.com.br/", "https://opencredz.com.br/"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
