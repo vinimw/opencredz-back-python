@@ -26,11 +26,15 @@ app = FastAPI(
     redoc_url=None,
     openapi_url="/openapi.json" if docs_enabled else None,
 )
+origins = ["http://opencredz.com.br", "https://opencredz.com.br" , "https://www.opencredz.com.br", "https://opencredz-admin.netlify.app"]
+
+if docs_enabled:
+    origins = ["http://localhost:8000", "http://localhost:5173"]
 
 # CORS (ajuste origem se necessário)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://opencredz.com.br", "https://opencredz.com.br" , "https://www.opencredz.com.br"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
