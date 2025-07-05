@@ -15,7 +15,8 @@ from app.api.v1 import (
     routes_health_plan,
     routes_financing_request,
     routes_loan_application,
-    routes_loan_application_pj
+    routes_loan_application_pj,
+    routes_dashboard
 )
 
 docs_enabled = settings.ENV == "development"
@@ -65,3 +66,4 @@ app.include_router(routes_health_plan.router, prefix="/api/v1", tags=["Health Pl
 app.include_router(routes_financing_request.router, prefix="/api/v1", tags=["Financing Request"])
 app.include_router(routes_loan_application.router, prefix="/api/v1", tags=["Loan Application"])
 app.include_router(routes_loan_application_pj.router, prefix="/api/v1", tags=["Loan Application PJ"])
+app.include_router(routes_dashboard.router, prefix="/api/v1", tags=["Dashboard"])
